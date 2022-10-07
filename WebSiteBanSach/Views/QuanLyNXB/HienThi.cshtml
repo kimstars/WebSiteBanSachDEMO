@@ -1,0 +1,42 @@
+﻿@model WebSiteBanSach.Models.NhaXuatBan
+
+@{
+    ViewBag.Title = "Hiển thị Nhà xuất bản";
+    Layout = "~/Views/LayOut/AdminLayout.cshtml";
+}
+
+<h2>Thông tin Chi tiết của Nhà xuất bản</h2>
+
+<div style="font-size:16px;word-wrap: break-word;">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenNXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNXB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DienThoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "ChinhSua", new { @_MaNXB = Model.MaNXB }) |
+    @Html.ActionLink("Trở lại Trang Quản lý Nhà xuất bản", "Index")
+</p>

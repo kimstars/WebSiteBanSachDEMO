@@ -1,0 +1,14 @@
+﻿@using WebSiteBanSach.Models;
+@model List<NhaXuatBan>
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Danh mục Nhà xuất bản";
+    Layout = "~/Views/LayOut/NguoiDungLayout.cshtml";
+}
+@foreach (var item in Model)
+{
+    <div id="divBody">
+        <a href="@Url.Action("SachTheoNXB", "NhaXuatBan", new { @_MaNXB=item.MaNXB})" class="button button-submit">@item.TenNXB</a>
+    </div>
+    <br /><br />
+}

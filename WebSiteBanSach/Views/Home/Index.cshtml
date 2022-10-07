@@ -1,0 +1,54 @@
+﻿@using WebSiteBanSach.Models;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.PagedList<Sach>
+<link href="~/Content/TrangChuCss.css" rel="stylesheet" />
+@{
+    Layout = "~/Views/LayOut/NguoiDungLayout.cshtml";
+    ViewBag.Title = "Trang chủ";
+}
+@section NoiDungBenPhai{
+<div>
+    Truyền thông Anh cho biết quyết định thay HLV được đưa ra trước trận chung kết Cup FA. Van Gaal sẽ rời Old Trafford bất chấp Man Utd có thắng Crystal Palace tại Wembley hay không. Cup FA là kỉ niệm đẹp cuối cùng Van Gaal, sau những tháng ngày sống trong chỉ trích từ CĐV, các huyền thoại Man Utd cho tới truyền thông.
+    Man Utd có ý định đưa Louis Van Gaal lên làm Giám đốc kỹ thuật, hỗ trợ cho Mourinho nhưng HLV người Hà Lan khước từ.
+    Trong hai năm dẫn dắt "Quỷ đỏ", Van Gaal chi 362 triệu đôla mua cầu thủ nhưng thành tích không như mong đợi. Man Utd mùa này bị loại sớm ở Cup châu Âu, không có mặt trong Top 4. Lối chơi đơn điệu cũng khiến Van Gaal nhận nhiều chỉ trích, đặc biệt là từ các cựu cầu thủ Man Utd như Paul Scholes.
+</div>}
+
+<div id="divBody">
+    @{int i=0;}
+    @foreach(var item in Model)
+    {
+        i++;
+        <div id="SanPham">
+            <a href="@Url.Action("XemChiTiet", "Sach", new { @_MaSach = item.MaSach })">
+                <div id="AnhBia"><img src="@Url.Content("~/HinhAnhSP/"+item.AnhBia)" width="300" height="450"></div>
+            </a>
+            <div id="Gia">
+                <span id="TieuDe">Tên sách: </span>
+                <span id="TenSach">@item.TenSach</span><br/>
+                <span id="TieuDe">Đơn giá : </span>
+                <span id="Gia">@string.Format("{0:0,0}", @item.GiaBan) vnđ</span>
+            </div>
+            <div id="GioHang">
+                @using (Html.BeginForm("ThemGioHang", "GioHang", new { @__MaSach = item.MaSach, @strURL = Request.Url.ToString() }))
+                {
+                    <input type="submit" style="cursor:pointer" value="Mua ngay &#xf07a;" id="btnGioHang" class="btn btn-primary">
+                }
+            </div>
+        </div>
+        if(i==3)
+        {
+            i=0;
+            <div style="clear:both"></div>
+        }
+    }
+</div>
+<div style="clear:both"></div>
+<div id="divBody">
+    <br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+</div>
+<div id="divBody" class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { _Page = page }))
+</div>

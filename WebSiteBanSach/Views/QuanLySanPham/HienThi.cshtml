@@ -1,0 +1,97 @@
+﻿@model WebSiteBanSach.Models.Sach
+
+@{
+    ViewBag.Title = "Hiển thị Sách";
+    Layout = "~/Views/LayOut/AdminLayout.cshtml";
+}
+
+<h2>Thông tin Chi tiết của Sách</h2>
+
+<div style="font-size:16px;word-wrap: break-word;">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenSach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </dt>
+
+        <dd>
+            @string.Format("{0:0,0}", Model.GiaBan) vnđ
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnhBia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnhBia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayCapNhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCapNhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuongTon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaNXB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhaXuatBan.TenNXB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaChuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuDe.TenChuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Moi)
+        </dt>
+
+            @if (Model.Moi == 1)
+            {
+                <dd>Mới</dd>
+            }
+            else
+            {
+                <dd>Cũ</dd>
+            }
+    </dl>
+</div>
+
+<img src="@Url.Content("~/HinhAnhSP/"+Model.AnhBia)" width="500" height="750">
+
+<p>
+    @Html.ActionLink("Sửa", "ChinhSua", new { @_MaSach = Model.MaSach }) | 
+    @Html.ActionLink("Trở lại Trang Quản lý Sách", "Index")
+</p>
